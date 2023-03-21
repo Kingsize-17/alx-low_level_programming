@@ -1,13 +1,21 @@
-#ifndef 'main_h'
-
+#include "main.h"
 /**
  * main - Entry point
  * Description:  'prints function 10 times the alphabet, in lowercase'
  * Return: Always 0.
  */
 
-int main(void)
+void print_alphabet_x10(void)
 {
-	print_alphabet();
-	return (0);
+	int i;
+	int j;
+
+	for (j = 1; i <= 10; i++)
+	{
+		for (j = 97; j <= 122; j++)
+		{
+			_putchar(j);
+		}
+		_putchar('\n');
+	}
 }
