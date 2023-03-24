@@ -1,5 +1,3 @@
-7 - print_diagonal.c
-
 #include "main.h"
 
 /**
