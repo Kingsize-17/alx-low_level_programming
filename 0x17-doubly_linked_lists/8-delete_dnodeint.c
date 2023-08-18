@@ -8,45 +8,36 @@
  * @index: The index of the new node
  * Return: Return 1 if it succeeded, reeturn -1 if it failed
  */
+
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 {
-	dlistint_t *h1;
-	dlistint_t *h2;
-	unsigned int a;
+	dlistint_t *current;
 
-	h1 = *head;
+	if (head == NULL)
+		return (-1);
 
-	if (h1 != NULL)
-		while (h1->prev != NULL)
-			h1 = h1->prev;
+	current = *head;
 
-	a = 0;
+	if (current == NULL)
+		return (-1);
 
-	while (h1 != NULL)
+	while (index != 0)
 	{
-		if (a == index)
-		{
-			if (a == 0)
-			{
-				*head = h1->next;
-				if (*head != NULL)
-					(*head)->prev = NULL;
-			}
-			else
-			{
-				h2->next = h1->next;
-
-				if (h1->next != NULL)
-					h1->next->prev = h2;
-			}
-
-			free(h1);
-			return (1);
-		}
-		h2 = h1;
-		h1 = h1->next;
-		a++;
+		current = current->next;
+		index--;
+		if (current == NULL)
+			return (-1);
 	}
 
-	return (-1);
+	if (current->prev != NULL)
+		current->prev->next = current->next;
+	else
+	{
+		*head = current->next;
+		if (current->next != NULL)
+			current->next->prev = NULL;
+		free(current);
+	}
+
+	return (1);
 }
